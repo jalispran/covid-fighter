@@ -2,9 +2,12 @@ import Phaser from "phaser";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App.jsx";
-import playGame from "./phaser/game";
+import MenuScene from './phaser/scenes/MenuScene'
+import PauseScene from './phaser/scenes/PauseScene'
+import Game from "./phaser/game";
 
-//console.log(App);
+
+let sceneList = [MenuScene, Game, PauseScene]
 
 export const config = {
   type: Phaser.AUTO,
@@ -16,7 +19,7 @@ export const config = {
   },
   width: 1366,
   height: 768,
-  scene: playGame,
+  scene: sceneList,
   physics: {
         default: 'arcade',
         arcade: {

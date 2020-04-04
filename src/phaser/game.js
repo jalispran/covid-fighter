@@ -18,7 +18,8 @@ import three from '../assets/stage/Tiles/3.png'
 import twelve from '../assets/stage/Tiles/12.png'
 import sixteen from '../assets/stage/Tiles/16.png'
 
-import fsIcon from '../assets/transparentLight28.png'
+import fsIcon from '../assets/controls/transparentLight28.png'
+import pause from '../assets/controls/transparentLight12.png'
 
 let player;
 let stars;
@@ -31,10 +32,10 @@ let scoreText;
 
 let movePlayer;
 
-class playGame extends Phaser.Scene {
+class Game extends Phaser.Scene {
   constructor() {
-    super("PlayGame");
-
+    super("Game");
+    Phaser.Scene.call(this, { key: 'Game' });
   }
 
   preload() {
@@ -54,6 +55,7 @@ class playGame extends Phaser.Scene {
     this.load.image('sixteen', sixteen)
 
     this.load.image('fs', fsIcon)
+    this.load.image('pause', pause)
 
   }
 
@@ -63,6 +65,10 @@ class playGame extends Phaser.Scene {
     this.add.image(config.width - 50, 50, 'fs')
       .setInteractive()
       .on('pointerup', () => {this.scale.toggleFullscreen()})
+
+      let btn_pause = this.add.image(config.width - 150, 50, 'pause')
+      .setInteractive()
+      .on('pointerdown', () => {this.scene.pause(); this.scene.launch('PauseScene');})
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = this.physics.add.staticGroup();
@@ -268,4 +274,4 @@ class playGame extends Phaser.Scene {
 
 }
 
-export default playGame;
+export default Game;
