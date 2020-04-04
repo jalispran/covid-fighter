@@ -38,6 +38,7 @@ class Game extends Phaser.Scene {
     Phaser.Scene.call(this, { key: 'Game' });
   }
 
+  //TODO: Use factories and MovePlayer#default_controls
   preload() {
     this.load.image('sky', backdrop);
     this.load.image('ground', ground);
@@ -60,15 +61,19 @@ class Game extends Phaser.Scene {
   }
 
   create() {
+    //go fullscreen
+    if(!this.scale.isFullscreen){
+      this.scale.startFullscreen()
+    }
       //  A simple background for our game
     this.add.image(config.width/2, config.height/2, 'sky');
     this.add.image(config.width - 50, 50, 'fs')
       .setInteractive()
       .on('pointerup', () => {this.scale.toggleFullscreen()})
 
-      let btn_pause = this.add.image(config.width - 150, 50, 'pause')
+      this.add.image(config.width - 150, 50, 'pause')
       .setInteractive()
-      .on('pointerdown', () => {this.scene.pause(); this.scene.launch('PauseScene');})
+      .on('pointerdown', () => {this.scene.pause(); this.scene.launch('PauseScene')})
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = this.physics.add.staticGroup();
@@ -204,7 +209,7 @@ class Game extends Phaser.Scene {
       return;
     }
 
-    if (cursors.left.isDown){
+    if (cursors.left.isDown) {
       movePlayer.left()
     } else if (cursors.right.isDown) {
       movePlayer.right()
@@ -246,7 +251,6 @@ class Game extends Phaser.Scene {
     if (stars.countActive(true) === 0){
         //  A new batch of stars to collect
         stars.children.iterate(function (child) {
-
             child.enableBody(true, child.x, 0, true, true);
 
         });

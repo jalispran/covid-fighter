@@ -3,11 +3,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App.jsx";
 import MenuScene from './phaser/scenes/MenuScene'
-import PauseScene from './phaser/scenes/PauseScene'
+import TutorialScene from './phaser/scenes/TutorialScene'
 import Game from "./phaser/game";
+import PauseScene from './phaser/scenes/PauseScene'
 
-
-let sceneList = [MenuScene, Game, PauseScene]
+let sceneList = [MenuScene, TutorialScene, Game, PauseScene]
 
 export const config = {
   type: Phaser.AUTO,
