@@ -2,8 +2,8 @@ import Phaser from "phaser";
 import {config} from '../index'
 import MovePlayer from './MovePlayer'
 
-import backdrop from '../assets/stage/BG/BG.png'
-// import ground from '../assets/platform.png'
+import backdrop from '../assets/stage/BG/BG_large.png'
+
 import star from '../assets/star.png'
 import bomb from '../assets/bomb.png'
 import dude from '../assets/dude.png'
