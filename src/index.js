@@ -6,8 +6,9 @@ import MenuScene from './phaser/scenes/MenuScene'
 import TutorialScene from './phaser/scenes/TutorialScene'
 import Game from "./phaser/game";
 import PauseScene from './phaser/scenes/PauseScene'
+import ControlScene from './phaser/scenes/ControlScene'
 
-let sceneList = [MenuScene, TutorialScene, Game, PauseScene]
+let sceneList = [MenuScene, TutorialScene, Game, PauseScene, ControlScene]
 
 export const config = {
   type: Phaser.AUTO,

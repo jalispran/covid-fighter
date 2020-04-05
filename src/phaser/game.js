@@ -38,6 +38,10 @@ class Game extends Phaser.Scene {
     Phaser.Scene.call(this, { key: 'Game' });
   }
 
+  init() {
+    gameOver = false
+  }
+
   //TODO: Use factories and MovePlayer#default_controls
   preload() {
     this.load.image('sky', backdrop);
@@ -73,7 +77,7 @@ class Game extends Phaser.Scene {
 
       this.add.image(config.width - 150, 50, 'pause')
       .setInteractive()
-      .on('pointerdown', () => {this.scene.pause(); this.scene.launch('PauseScene')})
+      .on('pointerdown', () => {this.scene.pause(); this.scene.launch('PauseScene', {scoreText: scoreText.text, render: 'pause'})})
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = this.physics.add.staticGroup();
@@ -268,12 +272,11 @@ class Game extends Phaser.Scene {
 
   hitBomb (player, bomb){
       this.physics.pause();
-
       player.setTint(0xff0000);
-
       player.anims.play('turn');
-
       gameOver = true;
+      this.scene.pause();
+      this.scene.launch('PauseScene', {scoreText: scoreText.text, render: 'gameover'})
   }
 
 }
