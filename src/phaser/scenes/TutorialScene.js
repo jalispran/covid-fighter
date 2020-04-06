@@ -61,6 +61,8 @@ export default class TutorialScene extends Phaser.Scene {
 
     this.state.cursors = this.input.keyboard.createCursorKeys();
 
+    this.input.addPointer()
+
   }
 
   update() {
