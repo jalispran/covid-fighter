@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400&display=swap');
+
+body {
+  font: 16px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  margin:0px;
+  padding:0px;
+}
+.nav .list .item {
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-top: 0px;
+}
+
+ul {
+  padding-inline-start: 0px;
+}

@@ -36,10 +36,15 @@ class Game extends Phaser.Scene {
   constructor() {
     super("Game");
     Phaser.Scene.call(this, { key: 'Game' });
+    this.state = {
+      showControls: true
+    }
   }
 
   init() {
     gameOver = false
+    score = 0
+    this.state.showControls = true
   }
 
   //TODO: Use factories and MovePlayer#default_controls
@@ -69,7 +74,8 @@ class Game extends Phaser.Scene {
     if(!this.scale.isFullscreen){
       this.scale.startFullscreen()
     }
-      //  A simple background for our game
+
+    //  A simple background for our game
     this.add.image(config.width/2, config.height/2, 'sky');
     this.add.image(config.width - 50, 50, 'fs')
       .setInteractive()
@@ -211,6 +217,11 @@ class Game extends Phaser.Scene {
   update() {
     if (gameOver){
       return;
+    }
+
+    if(this.state.showControls) {
+      this.scene.launch('ControlScene', {control: 'cursors'})
+      this.state.showControls = false
     }
 
     if (cursors.left.isDown) {
